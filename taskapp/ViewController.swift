@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
         view.endEditing(true)
         searchBar.text = ""
-        taskArray = realm.objects(Task.self)
+        taskArray = realm.objects(Task.self).sorted(byKeyPath: "date", ascending: false)
         tableView.reloadData()
     }
     
