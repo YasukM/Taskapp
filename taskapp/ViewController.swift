@@ -30,7 +30,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
         searchBar.placeholder = "検索ワードを入力してください"
         
     }
@@ -38,6 +37,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar){
+        view.endEditing(true)
+        searchBar.text = ""
+        taskArray = realm.objects(Task.self)
+        tableView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
