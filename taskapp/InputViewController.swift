@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import RealmSwift    // 追加する
+import RealmSwift
 import UserNotifications
 
 class InputViewController: UIViewController {
@@ -17,8 +17,8 @@ class InputViewController: UIViewController {
     @IBOutlet weak var contentsTextView: UITextView!
     @IBOutlet weak var categoryTextField: UITextField!
     
-    var task: Task!   // 追加する
-    let realm = try! Realm()    // 追加する
+    var task: Task!
+    let realm = try! Realm()
     
     override func viewDidLoad() {
 
@@ -47,7 +47,7 @@ class InputViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    // 追加する
+   
     override func viewWillDisappear(_ animated: Bool) {
         try! realm.write {
             self.task.title = self.titleTextField.text!
@@ -56,6 +56,8 @@ class InputViewController: UIViewController {
             self.task.category = self.categoryTextField.text!
             self.realm.add(self.task, update: true)
         }
+        
+        setNotification(task: task) // ローカル通知
         
         super.viewWillDisappear(animated)
     }

@@ -42,7 +42,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         print("search text ... \(searchText)")
-        taskArray = realm.objects(Task.self).filter("category CONTAINS[c] %@" ,searchText ).sorted(byKeyPath: "date")
+        taskArray = realm.objects(Task.self).filter("category CONTAINS[c] %@" ,searchText ).sorted(byKeyPath: "date", ascending: false)
         tableView.reloadData()
     }
     
